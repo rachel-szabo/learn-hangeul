@@ -25,7 +25,7 @@ export default function Perlin () {
             value: '#14145f'
         },
         colorD: {
-            value: '#5f3f3f'
+            value: 'black'
         }
     })
 

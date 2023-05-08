@@ -1,14 +1,11 @@
 import { Center, Text3D, Float } from '@react-three/drei'
-import * as THREE from 'three'
 
 export default function Hangeul() {
 
     // const textColor = new THREE.Color('#cc5500')
-    const font = '/fonts/3D/NotoSerifKR.json' 
+    const font = '/fonts/3D/NotoSansKR.json' 
     
     return <>
-
-        {/* <Float floatIntensity={0.5} rotationIntensity={0}> */}
         <group position={[-0.2,-0.50,-1.0]}>
             <Text3D
                     textAlign='center'
@@ -120,9 +117,6 @@ export default function Hangeul() {
                     <meshNormalMaterial />
                 </Text3D>
         </group>
-               
-            {/* </Float> */}
-
     </>
     
 }
