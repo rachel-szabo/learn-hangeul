@@ -1,15 +1,19 @@
 import { Center, Text3D, Float } from '@react-three/drei'
+import { useControls } from 'leva'
+import { useMemo } from 'react'
+import * as THREE from 'three'
 
-export default function Hangeul() {
+export default function Hangeul({...props}) {
 
     // const textColor = new THREE.Color('#cc5500')
     const font = '/fonts/3D/NotoSansKR.json' 
+    const param = props.textProp
     
     return <>
-        <group position={[-0.2,-0.50,-1.0]}>
+        <group position={[-0.0, 0,-0.9]}>
             <Text3D
-                    textAlign='center'
-                    position={[-0.11, 0, -0.7]} 
+                    position={param.letterAPos}
+                    // position={[-0.125, 0, -1.5]} 
                     font={font}
                     size={0.5}
                     height={0.1} //depth
@@ -26,8 +30,9 @@ export default function Hangeul() {
                 </Text3D>
 
                 <Text3D
-                    position={[-1.5,0,0.25]} 
-                    rotation={[0, Math.PI/3, 0]}
+                    position={param.letterBPos}
+                    // position={[-1.5,0,0.25]} 
+                    rotation={param.lBRotation}
                     font={font}
                     size={0.5}
                     height={0.1} //depth
@@ -39,13 +44,14 @@ export default function Hangeul() {
                     bevelSegments={5}
                     castShadow
                 >
-                    ㄴ
+                    ㅈ
                     <meshNormalMaterial />
                 </Text3D>
 
                 <Text3D
-                    position={[1.5,0,-0.25]} 
-                    rotation={[0,-Math.PI/3, 0]}
+                    position={param.letterCPos}
+                    // position={[1.5,0,-0.75]} 
+                    rotation={param.lCRotation}
                     font={font}
                     size={0.5}
                     height={0.1} //depth
@@ -62,10 +68,10 @@ export default function Hangeul() {
                 </Text3D>
         </group>
 
-        <group position={[+0.2,-0.50, 0.7]} rotation={[0, Math.PI, 0]}>
+        <group position={[0.2, 0, 0.7]} rotation={[0, Math.PI, 0]}>
             <Text3D
-                    textAlign='center'
-                    position={[-0.11, 0, -0.7]} 
+                    position={param.letterAPos}
+                    // position={[-0.125, 0, -1.5]} 
                     font={font}
                     size={0.5}
                     height={0.1} //depth
@@ -82,8 +88,9 @@ export default function Hangeul() {
                 </Text3D>
 
                 <Text3D
-                    position={[-1.5,0,0.25]} 
-                    rotation={[0, Math.PI/3, 0]}
+                    position={param.letterBPos}
+                    // position={[-1.5,0,0.25]} 
+                    rotation={param.lBRotation}
                     font={font}
                     size={0.5}
                     height={0.1} //depth
@@ -100,8 +107,9 @@ export default function Hangeul() {
                 </Text3D>
 
                 <Text3D
-                    position={[1.5,0,-0.25]} 
-                    rotation={[0,-Math.PI/3, 0]}
+                    position={param.letterCPos}
+                    // position={[1.5,0,-0.25]} 
+                    rotation={param.lCRotation}
                     font={font}
                     size={0.5}
                     height={0.1} //depth

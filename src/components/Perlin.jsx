@@ -5,29 +5,7 @@ import { useFrame } from '@react-three/fiber'
 import { useRef } from 'react'
 import { useControls, } from 'leva'
 
-export default function Perlin () {
-
-
-    const { scale, colorA, colorB, colorC, colorD } = useControls({
-        scale: { 
-            value: 0.05,
-            min: 0.001,
-            max: 1.5,
-            step: 0.0001
-        },
-        colorA: {
-            value: 'black'
-        },
-        colorB: {
-            value: '#0f98bc'
-        },
-        colorC: {
-            value: '#14145f'
-        },
-        colorD: {
-            value: 'black'
-        }
-    })
+export default function Perlin ({...props}){
 
     const clock = new THREE.Clock()
 
@@ -43,26 +21,24 @@ export default function Perlin () {
         <Environment preset={"sunset"}/>
 
         <mesh>
-                <sphereGeometry args={[40,64,64]}/>
-                <LayerMaterial
-                    side={THREE.BackSide}
+            <sphereGeometry args={[40,64,64]}/>
+            <LayerMaterial
+                side={THREE.BackSide}
+            >
+                <Noise
+                    ref={perRef} 
+                    type='perlin' 
+                    scale={props.myProp.scale}
+                    colorA={props.myProp.colorA}
+                    colorB={props.myProp.colorB}
+                    colorC={props.myProp.colorC}
+                    colorD={props.myProp.colorD}
+                    mapping='local'
+                    offset={[5.5,-1.9,-0.5]}
+                    strength={16}
                 >
-                    <Noise
-                        ref={perRef} 
-                        type='perlin' 
-                        scale={scale}
-                        colorA={colorA}
-                        colorB={colorB}
-                        colorC={colorC}
-                        colorD={colorD}
-                        mapping='local'
-                        offset={[5.5,-1.9,-0.5]}
-                        strength={16}
-                    >
-
-                    </Noise>
-
-                </LayerMaterial>
+                </Noise>
+            </LayerMaterial>
         </mesh>
     </>
 }
