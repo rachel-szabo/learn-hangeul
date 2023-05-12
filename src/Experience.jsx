@@ -1,6 +1,7 @@
 import { OrbitControls, SoftShadows } from '@react-three/drei'
 import { useMemo } from 'react'
 import { useControls } from 'leva'
+import { useThree, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 import Hangeul from './components/Hangeul'
@@ -10,6 +11,10 @@ import Platform from './components/Platform'
 
 export default function Experience()
 {
+
+    const {gl, camera} = useThree()
+    // camera.rotateX(Math.PI/2)
+    
 
     const perlinOptions = useMemo(() => {
         return {
@@ -23,12 +28,16 @@ export default function Experience()
 
     const hangeulOptions = useMemo(() => {
         return {
-            letterAPos: {value: [-0.125, 0, -1.5], step: 0.02},
-            letterBPos: {value: [-1.5, 0, 0.25], step: 0.02},
-            letterCPos: {value: [1.5, 0, -0.75], step: 0.02},
+            letterAPos: {value: [-2.16, 0, 2.06], step: 0.02},
+            letterBPos: {value: [0, 0, 0.25], step: 0.02},
+            letterCPos: {value: [2.46, 0, 1.22], step: 0.02},
 
-            lBRotation: {value: [0, Math.PI/3, 0], step: 0.02},
-            lCRotation: {value: [0, -Math.PI/3, 0], step: 0.02}
+            letterAlign: {value: [-0.47, 0, -3.0], step: 0.03},
+            g2letterAlign: {value: [0.52, 0, 3.0], step: 0.03},
+            letterSize: {value: 0.8},
+
+            pRotation: {value: [0, Math.PI/3, 0], step: 0.02},
+            nRotation: {value: [0, -Math.PI/3, 0], step: 0.02}
         }
     }, [])
 
@@ -40,7 +49,8 @@ export default function Experience()
         <OrbitControls />
 
         {/* light and shadows */}
-        <pointLight castShadow position={[0,1,0]} intensity={0.6}/>
+        <pointLight castShadow position={[0, 2, 0]} intensity={0.6}/>
+        <pointLight castShadow position={[0, -2, 0]} intensity={0.6}/>
         <ambientLight intensity={ 0.2 } />
         <SoftShadows size={2} samples={10} focus={5}/>
 
@@ -48,10 +58,10 @@ export default function Experience()
         <Perlin myProp={perlin}/>
         {/* <Taegukgi/> */}
 
-        <axesHelper scale={2.5}/>
+        {/* <axesHelper scale={4}/> */}
 
         {/* main elements of app */}
         <Hangeul textProp={hangeul}/>
-        <Platform/>
+        {/* <Platform/> */}
     </>
 }

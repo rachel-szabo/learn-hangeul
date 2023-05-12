@@ -11,9 +11,9 @@ export default function Platform () {
             </Cylinder>
         </RigidBody>
 
-        <mesh position={[0, 0.01, 0]} rotation-x={-Math.PI/2} >
+        {/* <mesh position={[0, 0.01, 0]} rotation-x={-Math.PI/2} >
             <circleGeometry args={[4,6]} />
             <meshNormalMaterial wireframe/>
-        </mesh>
+        </mesh> */}
     </>
 }

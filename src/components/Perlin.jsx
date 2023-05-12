@@ -3,7 +3,6 @@ import { Environment } from "@react-three/drei"
 import { LayerMaterial, Noise } from "lamina"
 import { useFrame } from '@react-three/fiber'
 import { useRef } from 'react'
-import { useControls, } from 'leva'
 
 export default function Perlin ({...props}){
 
@@ -12,9 +11,17 @@ export default function Perlin ({...props}){
     const perRef = useRef()
 
     useFrame((state, delta) => {
-        perRef.current.offset.x += Math.sin(delta * 2)
-        perRef.current.offset.y -= delta
-        perRef.current.offset.z += Math.sin(delta / 2)
+        perRef.current.offset.x += Math.sin(delta * 4)
+        perRef.current.offset.y -= delta * 2
+        perRef.current.offset.z += Math.sin(delta / 3)
+        // perRef.current.scale += Math.sin(delta/500)
+
+        state.camera.lookAt(new THREE.Vector3(0, 0.4, -3))
+        state.camera.position.lerp(new THREE.Vector3(0,0.4,-0.4), delta)
+
+        // if (clicked) {
+
+        // }
     })
 
     return <>
